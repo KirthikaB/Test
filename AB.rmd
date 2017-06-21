@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+output: html_document
+---
+```{r}
+install.packages("xlsx",repos = "http://cran.us.r-project.org")
+```
+```{r}
+library("xlsx")
+data5=read.xlsx("Stats.xlsx",sheetIndex = 2,startRow = 1,endRow = 45,header = TRUE,colIndex = 10)
+data5
+summary(data5)
+table(data5)
+(dTab <- table(data5))
+barplot(dTab, ylim=c(0, 30), xlab="No.of years experience", ylab="Persons", col="red",
+        main="Absolute frequency")
+dotchart(dTab, ylim=c(0, 30), xlab="No.of years experience", ylab="Persons", col="blue",
+        main="Absolute frequency")
+names(data5)
+hist(data5$Exp,ylim=c(0, 30),xlab="No.of years experience", ylab="Persons", col="blue",main="histogram")
+
+```
