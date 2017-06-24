@@ -1,0 +1,49 @@
+---
+title: "**ECS DATAMATICS**"
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage{lipsum}
+- \pagestyle{fancy}
+- \fancyhead[CO,CE]{Ecs Datamatics}
+- \fancyfoot[CO,CE]{Copyright(C)2017 ECS Inc.All Rights Reserved}
+- \fancyfoot[LE,RO]{\thepage}
+- \fancypagestyle{plain}{\pagestyle{fancy}}
+output: pdf_document
+---
+```{r load_libraries, echo=FALSE, message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE,
+                      echo=TRUE, results="hide")
+```
+
+```{r}
+
+
+
+install.packages("xlsx",repos = "http://cran.us.r-project.org")
+
+
+```
+
+```{r}
+library("xlsx")
+data8=read.xlsx("Facebook.xlsx",sheetIndex = 1,startRow = 1,endRow = 185,header = TRUE,colIndex = 2)
+data8
+
+table(data8$Date)
+(dTab1 <- table(data8$Date))
+dTab1
+names(dTab1)
+
+data8$Date<-as.Date(data8$Date,"%d/%m/%Y")
+order(data8$Date)
+sorted<-data8[order(data8$Date),]
+sorted
+
+#Plotting the data in graphs
+
+barplot(dTab1,names.arg = expression("30may", "31may", "jun7","jun8","jun9","jun10","jun13","jun14","jun15","jun16","jun17","jun19","jun20","jun21"),xlim=c(0,14),ylim = c(0,40), ylab = "Views", xlab = "Date")
+
+pie(dTab1,labels=names(dTab1))
+
+dotchart(dTab1)
+```
